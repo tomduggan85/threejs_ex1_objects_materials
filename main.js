@@ -35,48 +35,34 @@ const sun = new THREE.Mesh(
 );
 scene.add(sun);
 
-const earthTexture = new THREE.TextureLoader().load(earthImageUrl);
 const earth = new THREE.Mesh(
   new THREE.SphereGeometry(0.2, 30, 30), 
-  new THREE.MeshLambertMaterial({map: earthTexture})
+  new THREE.MeshLambertMaterial({color: 0x0000ff})
 );
 earth.position.x = 1.5;
-const earthOrbit = new THREE.Group();
-earthOrbit.add(earth);
-scene.add(earthOrbit);
+scene.add(earth);
 
-const moonTexture = new THREE.TextureLoader().load(moonImageUrl);
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(0.1, 30, 30), 
-  new THREE.MeshLambertMaterial({map: moonTexture})
+  new THREE.MeshLambertMaterial({color: 0x777777})
 );
-moon.position.x = 0.5;
-earth.add(moon);
+moon.position.x = 2;
+scene.add(moon);
 
-const marsTexture = new THREE.TextureLoader().load(marsImageUrl);
 const mars = new THREE.Mesh(
   new THREE.SphereGeometry(0.1, 30, 30), 
-  new THREE.MeshLambertMaterial({map: marsTexture})
+  new THREE.MeshLambertMaterial({color: 0xff6600})
 );
 mars.position.x = 2.5;
-const marsOrbit = new THREE.Group();
-marsOrbit.add(mars);
-scene.add(marsOrbit);
+scene.add(mars);
 
 const light = new THREE.PointLight(0xffffff, 1, 5000);
 scene.add(light);
 
-
 /* Draw loop */
 function draw() {
   requestAnimationFrame(draw);
-  
-  earthOrbit.rotation.y += 0.0015;
-  earth.rotation.y += 0.01;
-  mars.rotation.y += 0.005;
-  marsOrbit.rotation.y += 0.001;
-  
   renderer.render(scene, camera);
 };
 
-draw();
+draw(); 
